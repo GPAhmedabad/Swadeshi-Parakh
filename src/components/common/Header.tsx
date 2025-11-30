@@ -32,13 +32,13 @@ export default function Header() {
     <header className="py-2 px-4 md:px-6 bg-card/80 backdrop-blur-sm sticky top-0 z-50 border-b shadow-md">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-            <Image 
-                src="https://raw.githubusercontent.com/Sujay-Patel-GitHub/experiment/main/WhatsApp%20Image%202025-11-29%20at%2019.56.21.jpeg"
-                alt="Swadeshi Parakh Logo"
-                width={40}
-                height={40}
-                className="rounded-full"
-            />
+          <Image
+            src="https://raw.githubusercontent.com/Sujay-Patel-GitHub/experiment/main/WhatsApp%20Image%202025-11-29%20at%2019.56.21.jpeg"
+            alt="Swadeshi Parakh Logo"
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
           <span className="text-2xl font-bold font-headline truncate">
             {user ? `Welcome, ${user.displayName?.split(' ')[0]}` : 'Swadeshi Parakh'}
           </span>

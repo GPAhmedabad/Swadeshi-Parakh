@@ -53,8 +53,9 @@ export default function LoginPage() {
     try {
       await signInWithPopup(auth, provider);
       toast({
-        title: "Login Successful",
-        description: "Welcome!",
+        title: "Welcome to Swadeshi Parakh!",
+        description: "Your journey to support Indian brands begins now.",
+        className: "bg-white dark:bg-gray-800 border-l-4 border-green-600 shadow-lg",
       });
       router.push("/");
     } catch (error: any) {
@@ -75,30 +76,28 @@ export default function LoginPage() {
     return (
       <div className="flex justify-center items-center min-h-screen animated-background">
         <div className="text-center">
-            <p>Loading...</p>
+          <p>Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] animated-background">
-        <div className="container flex items-center justify-center py-20 min-h-[calc(100vh-4rem)]">
-            <Card className="w-full max-w-sm bg-card/80 backdrop-blur-sm">
-                <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-headline">Join the Movement</CardTitle>
-                <CardDescription>Sign in to empower local brands and make conscious choices.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                <div className="flex flex-col gap-4">
-                    <Button onClick={handleSignIn} className="w-full">
-                    <GoogleIcon className="mr-2" />
-                    Sign in with Google
-                    </Button>
-                </div>
-                </CardContent>
-            </Card>
-        </div>
+    <div className="min-h-screen flex items-center justify-center animated-background p-4">
+      <Card className="w-full max-w-sm bg-card/80 backdrop-blur-sm">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-headline">Join the Movement</CardTitle>
+          <CardDescription>Sign in to empower local brands and make conscious choices.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-4">
+            <Button onClick={handleSignIn} className="w-full">
+              <GoogleIcon className="mr-2" />
+              Sign in with Google
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
