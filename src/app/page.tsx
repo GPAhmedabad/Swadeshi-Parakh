@@ -33,12 +33,14 @@ export default function Home() {
             </Link>
 
             {/* Login Button */}
-            <Link href="/login">
-              <button className="px-6 py-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 active:scale-95">
-                <LogIn className="h-4 w-4" />
-                <span>Login</span>
-              </button>
-            </Link>
+            {!isLoggedIn && (
+              <Link href="/login">
+                <button className="px-6 py-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 active:scale-95">
+                  <LogIn className="h-4 w-4" />
+                  <span>Login</span>
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </header>

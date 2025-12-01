@@ -7,13 +7,17 @@ let app: FirebaseApp;
 let auth: Auth;
 let firestore: Firestore;
 
-async function initializeFirebase(): Promise<{
+function initializeFirebase(): {
   app: FirebaseApp;
   auth: Auth;
   firestore: Firestore;
-}> {
-  if (getApps().length === 0) {
+} {
+  if (!getApps().length) {
     app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    firestore = getFirestore(app);
+  } else {
+    app = getApps()[0];
     auth = getAuth(app);
     firestore = getFirestore(app);
   }
