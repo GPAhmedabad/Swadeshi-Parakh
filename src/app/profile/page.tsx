@@ -10,6 +10,7 @@ import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
+import BottomNav from "@/components/common/BottomNav";
 
 export default function ProfilePage() {
     const { user, isLoading } = useUser();
@@ -124,6 +125,7 @@ export default function ProfilePage() {
                     </CardContent>
                 </Card>
             </main>
+            <BottomNav />
         </>
     );
 }

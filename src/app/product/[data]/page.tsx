@@ -29,7 +29,7 @@ function getProductData(encodedData: string): Omit<Product, 'scannedImage'> | nu
       typeof data.originCountry === 'string' &&
       typeof data.isIndian === 'boolean'
     ) {
-       const product: Omit<Product, 'scannedImage'> = {
+      const product: Omit<Product, 'scannedImage'> = {
         productName: data.productName,
         companyName: data.companyName,
         originCountry: data.originCountry,
@@ -45,7 +45,7 @@ function getProductData(encodedData: string): Omit<Product, 'scannedImage'> | nu
       }
       return product;
     }
-    
+
     return null;
   } catch (error) {
     console.error("Failed to parse product data:", error);

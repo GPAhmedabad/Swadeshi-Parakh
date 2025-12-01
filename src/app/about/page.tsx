@@ -1,10 +1,9 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Camera, Info, User } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@/firebase/auth/use-user";
+import BottomNav from "@/components/common/BottomNav";
 
 export default function AboutPage() {
   const { user } = useUser();
@@ -77,59 +76,7 @@ export default function AboutPage() {
         </div>
       </main>
 
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-700 shadow-2xl">
-        <div className="px-4 py-3">
-          <div className="max-w-md mx-auto">
-            <div className="flex items-center justify-between gap-3">
-
-              {/* About Button - Highlighted */}
-              <Link href="/about" className="flex-1">
-                <button className="group relative w-full h-16 rounded-lg overflow-hidden transition-all duration-200 bg-orange-50 dark:bg-gray-800">
-                  <div className="relative flex flex-col items-center justify-center h-full gap-1">
-                    <Info className="h-5 w-5 text-orange-600" />
-                    <span className="text-xs font-bold text-orange-600">About Us</span>
-                  </div>
-                </button>
-              </Link>
-
-              {/* Scan Button */}
-              <Link href="/scan/ai" className="flex-1">
-                <button className="group relative w-full h-20 rounded-lg overflow-hidden transition-all duration-200 bg-orange-600 hover:bg-orange-700 shadow-lg">
-                  <div className="relative flex flex-col items-center justify-center h-full gap-1">
-                    <Camera className="h-7 w-7 text-white" />
-                    <span className="text-xs font-bold text-white uppercase tracking-wide">Scan</span>
-                  </div>
-                </button>
-              </Link>
-
-              {/* Profile Button */}
-              <Link href="/profile" className="flex-1">
-                <button className="group relative w-full h-16 rounded-lg overflow-hidden transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
-                  <div className="relative flex flex-col items-center justify-center h-full gap-1">
-                    {isLoggedIn && userPhoto ? (
-                      <div className="relative">
-                        <Image
-                          src={userPhoto}
-                          alt="Profile"
-                          width={28}
-                          height={28}
-                          className="rounded-full border-2 border-gray-300 dark:border-gray-600 group-hover:border-orange-600 transition-colors duration-200"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 group-hover:border-orange-600 transition-colors duration-200">
-                        <User className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                      </div>
-                    )}
-                    <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 group-hover:text-orange-600 transition-colors duration-200">Profile</span>
-                  </div>
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

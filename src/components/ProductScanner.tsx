@@ -6,7 +6,7 @@ import { identifyProduct } from '@/ai/flows/identify-product-flow';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Button } from './ui/button';
-import { Camera, CameraOff, Loader, RefreshCw, Zap, Flashlight, FlashlightOff } from 'lucide-react';
+import { Camera, CameraOff, Loader, RefreshCw, Zap, Flashlight, FlashlightOff, ArrowRight } from 'lucide-react';
 
 export default function ProductScanner() {
   const router = useRouter();
@@ -17,6 +17,8 @@ export default function ProductScanner() {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [supportsFlashlight, setSupportsFlashlight] = useState(false);
   const [isFlashlightOn, setIsFlashlightOn] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
+  const [instructionStep, setInstructionStep] = useState(1);
 
   useEffect(() => {
     const getCameraPermission = async () => {
@@ -146,7 +148,7 @@ export default function ProductScanner() {
         )}
 
         {/* Flashlight Button */}
-        {!capturedImage && supportsFlashlight && (
+        {!capturedImage && supportsFlashlight && !showInstructions && (
           <Button
             variant="ghost"
             size="icon"
@@ -176,6 +178,69 @@ export default function ProductScanner() {
             <p className="text-lg font-semibold">Analyzing Product...</p>
           </div>
         )}
+
+        {/* Instruction Overlay */}
+        {showInstructions && (
+          <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-300">
+            <div className="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-2xl max-w-xs w-full space-y-4">
+              {instructionStep === 1 ? (
+                <>
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                    <img
+                      src="/images/dos-and-donts.jpeg"
+                      alt="Scanning Instructions"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">कैसे स्कैन करें?</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      1. ब्रांड का नाम स्पष्ट दिखाएं।<br />
+                      2. उत्पाद को अच्छी रोशनी में रखें।<br />
+                      3. पूरा उत्पाद फ्रेम में लाएं।
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => setInstructionStep(2)}
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-xl flex items-center justify-center gap-2 group"
+                  >
+                    Next
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                    <img
+                      src="/images/dont-scan-face.jpg"
+                      alt="Don't Scan Face"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-bold text-red-600 dark:text-red-400">सावधानी</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">
+                      कृपया किसी व्यक्ति का चेहरा स्कैन न करें।
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      यह ऐप केवल उत्पादों को स्कैन करने के लिए है।
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => setShowInstructions(false)}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-xl flex items-center justify-center gap-2 group"
+                  >
+                    Done
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </div>
       <div className="mt-4">
         {capturedImage ? (
@@ -194,13 +259,13 @@ export default function ProductScanner() {
               disabled={isProcessing}
               className="h-14 text-lg"
             >
-              {isProcessing ? <><Loader className="mr-2 h-6 w-6 animate-spin" /> Processing...</> : <><Zap className="mr-2 h-6 w-6" /> Analyze</>}
+              {isProcessing ? <><Loader className="mr-2 h-6 w-6 animate-spin" /> Processing...</> : "Analyze"}
             </Button>
           </div>
         ) : (
           <Button
             onClick={handleCapture}
-            disabled={!hasCameraPermission || isProcessing}
+            disabled={!hasCameraPermission || isProcessing || showInstructions}
             className="w-full h-14 text-lg"
           >
             <Camera className="mr-2 h-6 w-6" />
