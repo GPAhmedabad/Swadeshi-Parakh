@@ -16,9 +16,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { getAuth, signOut } from 'firebase/auth';
 
+import { usePathname } from 'next/navigation';
+import { Home } from 'lucide-react';
+
 export default function Header() {
   const { user, isLoading } = useUser();
   const auth = getAuth();
+  const pathname = usePathname();
 
   const handleLogout = async () => {
     try {
@@ -27,6 +31,8 @@ export default function Header() {
       console.error('Error signing out: ', error);
     }
   };
+
+  const isScanPage = pathname === '/scan/ai';
 
   return (
     <header className="py-2 px-4 md:px-6 bg-card/80 backdrop-blur-sm sticky top-0 z-50 border-b shadow-md">
@@ -44,7 +50,14 @@ export default function Header() {
           </span>
         </Link>
         <nav className="flex items-center gap-4">
-          {isLoading ? (
+          {isScanPage ? (
+            <Link href="/">
+              <Button variant="outline" size="sm" className="gap-2 rounded-full border-gray-200 dark:border-gray-700 hover:border-orange-500 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-gray-800 transition-all shadow-sm">
+                <Home className="h-4 w-4" />
+                <span className="font-medium">Home</span>
+              </Button>
+            </Link>
+          ) : isLoading ? (
             <div className="h-10 w-20 animate-pulse rounded-md bg-muted" />
           ) : user ? (
             <DropdownMenu>

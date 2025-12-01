@@ -5,6 +5,10 @@ import { useRouter } from 'next/navigation';
 import ProductScanner from '@/components/ProductScanner';
 import { useUser } from '@/firebase/auth/use-user';
 
+import Link from 'next/link';
+import { Home } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
 export default function ScanAiPage() {
   const { user, isLoading } = useUser();
   const router = useRouter();
@@ -17,9 +21,9 @@ export default function ScanAiPage() {
 
   if (isLoading || !user) {
     return (
-       <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
-            <p>Loading...</p>
+          <p>Loading...</p>
         </div>
       </div>
     );
