@@ -88,15 +88,37 @@ export default function ProductScanner() {
   const handleCapture = () => {
     if (!videoRef.current) return;
 
+    const video = videoRef.current;
     const canvas = document.createElement('canvas');
-    canvas.width = videoRef.current.videoWidth;
-    canvas.height = videoRef.current.videoHeight;
+
+    // Calculate new dimensions (max 640px) to reduce token usage/cost
+    const MAX_SIZE = 640;
+    let width = video.videoWidth;
+    let height = video.videoHeight;
+
+    if (width > height) {
+      if (width > MAX_SIZE) {
+        height *= MAX_SIZE / width;
+        width = MAX_SIZE;
+      }
+    } else {
+      if (height > MAX_SIZE) {
+        width *= MAX_SIZE / height;
+        height = MAX_SIZE;
+      }
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+
     const context = canvas.getContext('2d');
     if (!context) {
       return;
     };
-    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    const dataUri = canvas.toDataURL('image/jpeg');
+    context.drawImage(video, 0, 0, width, height);
+
+    // Use slightly lower quality (0.8) to further reduce size
+    const dataUri = canvas.toDataURL('image/jpeg', 0.8);
     setCapturedImage(dataUri);
     setIsFlashlightOn(false); // Reset flashlight state
 
