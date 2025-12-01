@@ -2,13 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { useUser } from "@/firebase/auth/use-user";
 import BottomNav from "@/components/common/BottomNav";
-
 export default function AboutPage() {
-  const { user } = useUser();
-  const isLoggedIn = !!user;
-  const userPhoto = user?.photoURL || null;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pb-24">

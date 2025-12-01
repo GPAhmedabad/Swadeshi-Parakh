@@ -1,15 +1,10 @@
 "use client";
 
-import { LogIn } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "@/firebase/auth/use-user";
 import BottomNav from "@/components/common/BottomNav";
 
 export default function Home() {
-  const { user } = useUser();
-  const isLoggedIn = !!user;
-  const userPhoto = user?.photoURL || null;
 
   return (
     <>
@@ -33,15 +28,7 @@ export default function Home() {
               </span>
             </Link>
 
-            {/* Login Button */}
-            {!isLoggedIn && (
-              <Link href="/login">
-                <button className="px-6 py-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 active:scale-95">
-                  <LogIn className="h-4 w-4" />
-                  <span>Login</span>
-                </button>
-              </Link>
-            )}
+            {/* Login Button Removed */}
           </div>
         </div>
       </header>

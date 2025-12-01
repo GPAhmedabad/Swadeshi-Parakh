@@ -1,33 +1,15 @@
 "use client";
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import ProductScanner from '@/components/ProductScanner';
-import { useUser } from '@/firebase/auth/use-user';
 
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function ScanAiPage() {
-  const { user, isLoading } = useUser();
-  const router = useRouter();
+  // Authentication check removed
 
-  useEffect(() => {
-    if (!isLoading && !user) {
-      router.push('/login');
-    }
-  }, [user, isLoading, router]);
-
-  if (isLoading || !user) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-center">
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12 flex flex-col items-center">

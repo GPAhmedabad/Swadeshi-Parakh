@@ -10,7 +10,6 @@ export function FirebaseClientProvider({ children }: { children: React.ReactNode
   return (
     <FirebaseProvider
       app={firebase.app}
-      auth={firebase.auth}
       firestore={firebase.firestore}
     >
       {children}

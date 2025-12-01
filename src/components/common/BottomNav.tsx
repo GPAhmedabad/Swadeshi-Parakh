@@ -4,13 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Camera, Info, User, Home } from "lucide-react";
-import { useUser } from "@/firebase/auth/use-user";
-
 export default function BottomNav() {
     const pathname = usePathname();
-    const { user } = useUser();
-    const isLoggedIn = !!user;
-    const userPhoto = user?.photoURL || null;
 
     const isHomePage = pathname === "/";
 
@@ -50,30 +45,6 @@ export default function BottomNav() {
                                 </button>
                             </Link>
                         )}
-
-                        {/* Profile Button */}
-                        <Link href="/profile" className="flex-1">
-                            <button className={`group relative w-full h-16 rounded-lg overflow-hidden transition-all duration-200 ${pathname === '/profile' ? 'bg-orange-50 dark:bg-gray-800' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
-                                <div className="relative flex flex-col items-center justify-center h-full gap-1">
-                                    {isLoggedIn && userPhoto ? (
-                                        <div className="relative">
-                                            <Image
-                                                src={userPhoto}
-                                                alt="Profile"
-                                                width={28}
-                                                height={28}
-                                                className={`rounded-full border-2 ${pathname === '/profile' ? 'border-orange-600' : 'border-gray-300 dark:border-gray-600 group-hover:border-orange-600'} transition-colors duration-200`}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className={`w-7 h-7 rounded-full ${pathname === '/profile' ? 'bg-orange-100 dark:bg-gray-700 border-orange-600' : 'bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600 group-hover:border-orange-600'} flex items-center justify-center border-2 transition-colors duration-200`}>
-                                            <User className={`h-4 w-4 ${pathname === '/profile' ? 'text-orange-600' : 'text-gray-600 dark:text-gray-300'} `} />
-                                        </div>
-                                    )}
-                                    <span className={`text-xs font-semibold ${pathname === '/profile' ? 'text-orange-600' : 'text-gray-600 dark:text-gray-400 group-hover:text-orange-600'} transition-colors duration-200`}>Profile</span>
-                                </div>
-                            </button>
-                        </Link>
 
                     </div>
                 </div>
