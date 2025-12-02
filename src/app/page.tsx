@@ -16,7 +16,7 @@ export default function Home() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative overflow-hidden rounded-full border-2 border-orange-100 dark:border-orange-900/30 p-0.5">
                 <Image
-                  src="https://github.com/Sujay-Patel-GitHub/experiment/blob/main/WhatsApp%20Image%202025-11-30%20at%2014.20.05.jpeg?raw=true"
+                  src="/images/swadeshilogotabbar.png"
                   alt="Swadeshi Parakh"
                   width={40}
                   height={40}
@@ -56,7 +56,7 @@ export default function Home() {
             <div className="flex justify-center mb-6">
               <div className="relative bg-white dark:bg-gray-800 rounded-full p-4 shadow-xl ring-1 ring-gray-100 dark:ring-gray-700">
                 <Image
-                  src="https://github.com/Sujay-Patel-GitHub/experiment/blob/main/WhatsApp%20Image%202025-11-30%20at%2014.20.05.jpeg?raw=true"
+                  src="/images/swadeshilogotabbar.png"
                   alt="Swadeshi Parakh Logo"
                   width={120}
                   height={120}

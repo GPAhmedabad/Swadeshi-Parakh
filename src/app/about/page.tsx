@@ -18,7 +18,7 @@ export default function AboutPage() {
                 <div className="absolute -inset-3 bg-gradient-to-r from-orange-500 via-white to-green-500 rounded-full opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="relative bg-white dark:bg-gray-800 rounded-full p-1 shadow-xl ring-2 ring-orange-50 dark:ring-gray-700">
                   <Image
-                    src="https://github.com/Sujay-Patel-GitHub/experiment/blob/main/WhatsApp%20Image%202025-11-30%20at%2014.20.05.jpeg?raw=true"
+                    src="/images/swadeshilogotabbar.png"
                     alt="Swadeshi Parakh Logo"
                     width={70}
                     height={70}

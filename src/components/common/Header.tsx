@@ -16,14 +16,14 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="https://raw.githubusercontent.com/Sujay-Patel-GitHub/experiment/main/WhatsApp%20Image%202025-11-29%20at%2019.56.21.jpeg"
+            src="/images/swadeshilogotabbar.png"
             alt="Swadeshi Parakh Logo"
             width={40}
             height={40}
             className="rounded-full"
           />
           <span className="text-2xl font-bold font-headline truncate">
-            Swadeshi Parakh
+            स्वदेशी परख
           </span>
         </Link>
         <nav className="flex items-center gap-4">
@@ -37,6 +37,6 @@ export default function Header() {
           )}
         </nav>
       </div>
-    </header>
+    </header >
   );
 }

@@ -204,7 +204,7 @@ export default function ProductScanner() {
         {/* Instruction Overlay */}
         {showInstructions && (
           <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-300">
-            <div className="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-2xl max-w-xs w-full space-y-4">
+            <div className="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-2xl max-w-sm w-full space-y-4">
               {instructionStep === 1 ? (
                 <>
                   <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
@@ -216,11 +216,8 @@ export default function ProductScanner() {
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">कैसे स्कैन करें?</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      1. ब्रांड का नाम स्पष्ट दिखाएं।<br />
-                      2. उत्पाद को अच्छी रोशनी में रखें।<br />
-                      3. पूरा उत्पाद फ्रेम में लाएं।
+                    <p className="text-base font-extrabold text-center text-gray-900 dark:text-white leading-normal drop-shadow-sm">
+                      "ब्रांड का नाम स्पष्ट रूप से दिखाई दे, ऐसे स्कैन करें।"
                     </p>
                   </div>
 
