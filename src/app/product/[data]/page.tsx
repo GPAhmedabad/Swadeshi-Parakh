@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import React from 'react';
 
 type ProductPageProps = {
-  params: {
+  params: Promise<{
     data: string;
-  };
+  }>;
 };
 
 function getProductData(encodedData: string): Omit<Product, 'scannedImage'> | null {
@@ -53,8 +53,9 @@ function getProductData(encodedData: string): Omit<Product, 'scannedImage'> | nu
   }
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = getProductData(params.data);
+export default async function ProductPage({ params }: ProductPageProps) {
+  const resolvedParams = await params;
+  const product = getProductData(resolvedParams.data);
 
   if (!product) {
     return (
