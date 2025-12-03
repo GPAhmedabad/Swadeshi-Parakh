@@ -70,9 +70,8 @@ export default function ProductScanner() {
     const track = stream.getVideoTracks()[0];
 
     try {
-      // @ts-ignore - torch is not in standard constraints
       await track.applyConstraints({
-        advanced: [{ torch: !isFlashlightOn }]
+        advanced: [{ torch: !isFlashlightOn } as any]
       });
       setIsFlashlightOn(!isFlashlightOn);
     } catch (err) {
