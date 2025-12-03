@@ -142,12 +142,13 @@ export default function ProductScanner() {
       // URL-safe base64 encoding
       const safeEncodedData = encodedData.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
       router.push(`/product/${safeEncodedData}`);
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
+      const errorMessage = e instanceof Error ? e.message : "Could not analyze the product image.";
       toast({
         variant: "destructive",
         title: "Analysis Failed",
-        description: e.message || "Could not analyze the product image.",
+        description: errorMessage,
       });
       setIsProcessing(false);
     }

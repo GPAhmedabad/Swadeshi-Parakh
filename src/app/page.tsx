@@ -83,31 +83,7 @@ export default function Home() {
 
       <BottomNav />
 
-      <style jsx>{`
-        @keyframes wave-slow {
-          0% { transform: rotate(0deg) translate(0, 0); }
-          50% { transform: rotate(5deg) translate(10px, 10px); }
-          100% { transform: rotate(0deg) translate(0, 0); }
-        }
-        @keyframes wave-slower {
-          0% { transform: rotate(0deg) translate(0, 0); }
-          50% { transform: rotate(-5deg) translate(-10px, 15px); }
-          100% { transform: rotate(0deg) translate(0, 0); }
-        }
 
-        .animate-wave-slow {
-          animation: wave-slow 4s ease-in-out infinite;
-        }
-        .animate-wave-slower {
-          animation: wave-slower 6s ease-in-out infinite;
-        }
-        .animate-wave-slow-reverse {
-          animation: wave-slow 4s ease-in-out infinite reverse;
-        }
-        .animate-wave-slower-reverse {
-          animation: wave-slower 6s ease-in-out infinite reverse;
-        }
-      `}</style>
     </>
   );
 }
