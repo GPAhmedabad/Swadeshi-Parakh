@@ -3,7 +3,28 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import BottomNav from "@/components/common/BottomNav";
+
+import { Github, Linkedin, Instagram, Facebook, Youtube, Award, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { useState, useRef } from "react";
+
 export default function AboutPage() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const togglePlay = () => {
+    if (iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.postMessage('{"event":"command","func":"' + (isPlaying ? 'pauseVideo' : 'playVideo') + '","args":""}', '*');
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.postMessage('{"event":"command","func":"' + (isMuted ? 'unMute' : 'mute') + '","args":""}', '*');
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pb-24">
@@ -34,6 +55,55 @@ export default function AboutPage() {
             </CardHeader>
 
             <CardContent className="px-5 pb-6 space-y-4 text-center">
+              {/* Explainer Video Section with Custom Controls */}
+              <div className="mb-8 group relative z-20">
+                <div className="w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 bg-black dark:bg-black ring-1 ring-gray-200 dark:ring-gray-700 pointer-events-none transition-transform">
+                  <div className="relative w-full pt-[56.25%]"> {/* 16:9 Aspect Ratio */}
+                    <iframe
+                      ref={iframeRef}
+                      className="absolute top-0 left-0 w-full h-full"
+                      src="https://www.youtube.com/embed/_iuVUyZySqQ?autoplay=1&mute=0&controls=0&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3&enablejsapi=1"
+                      title="Swadeshi Parakh Purpose"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+
+                {/* Custom Action Buttons & Link */}
+                <div className="flex flex-col items-center gap-3 mt-4">
+                  <div className="flex justify-center gap-3">
+                    <button
+                      onClick={togglePlay}
+                      title={isPlaying ? "Pause Video" : "Play Video"}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm bg-white dark:bg-gray-800 rounded-full shadow-sm text-orange-600 font-semibold border border-orange-100 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
+                      {isPlaying ? 'Pause' : 'Play'}
+                    </button>
+                    <button
+                      onClick={toggleMute}
+                      title={isMuted ? "Unmute Video" : "Mute Video"}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm bg-white dark:bg-gray-800 rounded-full shadow-sm text-green-700 font-semibold border border-green-100 dark:border-gray-700 hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                      {isMuted ? 'Unmute' : 'Mute'}
+                    </button>
+                  </div>
+                  <a
+                    href="https://youtu.be/_iuVUyZySqQ?si=5P6Ekpsjq6Oj4AJB"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500 hover:text-red-500 transition-colors font-medium tracking-wide"
+                  >
+                    <Youtube size={14} />
+                    View on YouTube
+                  </a>
+                </div>
+              </div>
+
+              {/* Text Content */}
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base font-medium">
                 <span className="text-orange-600 font-bold">स्वदेशी परख</span> एक ऐसा आंदोलन है जो उपभोक्ताओं को जागरूक बनाकर सही निर्णय लेने और भारतीय ब्रांडों का समर्थन करने के लिए प्रेरित करता है।
               </p>

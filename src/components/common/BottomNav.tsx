@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Camera, Info, User, Home } from "lucide-react";
+import { Camera, Info, User, Home, Users } from "lucide-react";
+
 export default function BottomNav() {
     const pathname = usePathname();
 
@@ -45,6 +46,16 @@ export default function BottomNav() {
                                 </div>
                             </Link>
                         )}
+
+                        {/* Team Button */}
+                        <Link href="/team" className="flex-1">
+                            <div className={`group relative w-full h-16 rounded-lg overflow-hidden transition-all duration-200 ${pathname === '/team' ? 'bg-orange-50 dark:bg-gray-800' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+                                <div className="relative flex flex-col items-center justify-center h-full gap-1">
+                                    <Users className={`h-5 w-5 ${pathname === '/team' ? 'text-orange-600' : 'text-gray-600 dark:text-gray-400 group-hover:text-orange-600'} transition-colors duration-200`} />
+                                    <span className={`text-xs font-semibold ${pathname === '/team' ? 'text-orange-600' : 'text-gray-600 dark:text-gray-400 group-hover:text-orange-600'} transition-colors duration-200`}>Team</span>
+                                </div>
+                            </div>
+                        </Link>
 
                     </div>
                 </div>

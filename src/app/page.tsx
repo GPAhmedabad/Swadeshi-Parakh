@@ -3,8 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import BottomNav from "@/components/common/BottomNav";
+import { Info, X } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+  const [showLetter, setShowLetter] = useState(false);
 
   return (
     <>
@@ -28,7 +31,15 @@ export default function Home() {
               </span>
             </Link>
 
-            {/* Login Button Removed */}
+            {/* Info Button for Encourgement Letter */}
+            <button
+              onClick={() => setShowLetter(true)}
+              className="p-1.5 sm:p-2 bg-white dark:bg-gray-800 hover:bg-orange-50 dark:hover:bg-gray-700 text-gray-400 hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-400 rounded-full transition-all shadow-sm border border-gray-100 dark:border-gray-700 hover:border-orange-200 hover:scale-105 duration-200"
+              aria-label="Words of Encouragement"
+              title="Words of Encouragement"
+            >
+              <Info className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+            </button>
           </div>
         </div>
       </header>
@@ -83,6 +94,31 @@ export default function Home() {
 
       <BottomNav />
 
+      {/* Full Screen Image Viewer Modal for Appreciation Letter */}
+      {showLetter && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setShowLetter(false)}
+        >
+          <div className="relative w-full max-w-lg aspect-[1/1.41] md:max-w-xl bg-transparent rounded-lg overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
+            <button
+              className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/80 rounded-full text-white transition-colors backdrop-blur-md"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowLetter(false);
+              }}
+            >
+              <X size={24} />
+            </button>
+            <Image
+              src="/images/letter.jpeg"
+              alt="Appreciation Letter"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
 
     </>
   );
