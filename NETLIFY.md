@@ -31,7 +31,7 @@ This is the most important step for making sure your application works correctly
 -   `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
 -   `NEXT_PUBLIC_FIREBASE_APP_ID`
 -   `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
--   `GEMINI_API_KEY`
+-   `GOOGLE_API_KEY`
 
 **Where to find your keys:**
 
